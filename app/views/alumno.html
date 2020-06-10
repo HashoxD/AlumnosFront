@@ -1,0 +1,51 @@
+<div ng-app="myApp" ng-controller="AlumnoCtrl" ng-init="obtenerAlumnos()">
+    <div name="contenedorListaAlumnos">
+        <h2>Lista de alumnos</h2>
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Edad</th>
+                    <th>#</th>
+                    <th>#</th>
+                </tr>
+            </thead>
+            <tbody ng-repeat="x in listaAlumnos">
+                <tr>
+                    <td>{{ x.id }}</td>
+                    <td>{{ x.nombre }}</td>
+                    <td>{{ x.edad }}</td> 
+                    <td><button type="button" class="btn btn-danger" ng-click="eliminar(x.id)">Eliminar</button></td> 
+                    <td><button type="button" class="btn btn-success"
+                        ng-click="mostrarSeccionModificar(x.id, x.nombre, x.edad)">Modificar</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div name="contenedorModificarAlumno" ng-show="mostrarModificar">
+        <h2>Modificar alumno: {{alumnoModificar.id}}</h2>
+        <form name="formModificarAlumno" class="form-inline">
+            <div>
+                <input type="number" ng-model="alumnoAuxiliar.id" placeholder="Ingrese ID" disabled>
+                <input type="text" ng-model="alumnoAuxiliar.nombre" placeholder="Ingrese nombre">
+                <input type="number" ng-model="alumnoAuxiliar.edad" placeholder="Ingrese edad">
+                <button type="button" class="btn btn-info" ng-click="modificarAlumno()">Modificar</button>
+                <button type="button" class="btn btn-danger" ng-click="cancelarModificarAlumno()">Cancelar</button>
+            </div>
+        </form>
+    </div>
+
+    <div name="contenedorAgregarAlumno" ng-show="!mostrarModificar">
+        <h2>Agregar nuevo alumno</h2>
+        <form name="formAgregarAlumno" class="form-inline">
+            <div>
+                <input type="number" ng-model="alumnoAuxiliar.id" placeholder="Ingrese ID">
+                <input type="text" ng-model="alumnoAuxiliar.nombre" placeholder="Ingrese nombre">
+                <input type="number" ng-model="alumnoAuxiliar.edad" placeholder="Ingrese edad">
+                <button type="button" class="btn btn-info" ng-click="agregarAlumno()">Agregar</button>
+            </div>
+        </form>
+    </div> 
+</div>
