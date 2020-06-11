@@ -25,6 +25,8 @@ angular.module('myappApp')
     $scope.obtenerAlumnos = function () {
       alumnoService.obtenerAlumnos().then(function (res) {
         $scope.listaAlumnos = JSON.parse(res.data.data);
+      }).catch(function(err){
+        alert("Error: "+error);
       });
     };
 
@@ -33,6 +35,8 @@ angular.module('myappApp')
       alumnoService.agregarAlumno($scope.alumnoAuxiliar).then(function (res) {
         $scope.obtenerAlumnos();
         $scope.alumnoAuxiliar = {};
+      }).catch(function(err){
+        alert("Error: "+error);
       });
     }
 
@@ -40,6 +44,8 @@ angular.module('myappApp')
     $scope.eliminar = function (id) {
     alumnoService.eliminarAlumno(id).then(function (res) {
         $scope.obtenerAlumnos();
+      }).catch(function(err){
+        alert("Error: "+error);
       });
     }
 
@@ -58,6 +64,8 @@ angular.module('myappApp')
         $scope.obtenerAlumnos();
         $scope.alumnoAuxiliar = {};
         $scope.mostrarModificar = false;
+      }).catch(function(err){
+        alert("Error: "+error);
       }); 
     }
 
